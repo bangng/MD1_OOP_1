@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+<style>
+    table{
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+<table border="1" >
+    <tr>
+        <td>Nhập Chiều Rộng</td>
+        <td><input type="number" id="weight"></td>
+    </tr>
+    <tr>
+        <td>Nhập Chiều Dài</td>
+        <td><input type="number" id="height"></td>
+    </tr>
+    <tr>
+        <td>Area</td>
+        <td><p id="area"></p></td>
+    </tr>
+    <tr>
+        <td>Perimeter</td>
+        <td><p id="perimeter"></p></td>
+    </tr>
+    <tr>
+        <td><button onclick="Result()">Kết Quả</button></td>
+        <td><button onclick="reset()">Reset</button></td>
+    </tr>
+
+    <tr>
+        <td>Tọa Độ X</td>
+        <td><input id="toaDoX" type="text"></td>
+    </tr>
+    <tr>
+        <td>Tọa Độ Y</td>
+        <td><input id="toaDoY" type="text"></td>
+    </tr>
+    <tr>
+        <td>Change Color</td>
+        <td><input id="changeColor" type="text"></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><canvas id="myCanvas" width="1000px" height="600px" style="border: solid 2px darkkhaki"></canvas></td>
+        <td></td>
+    </tr>
+</table>
+</body>
+</html>
+<script>
+    // let Canvas = document.getElementById('myCanvas');
+    // let ctx = Canvas.getContext('2d');
+    class recTangle{
+        width;
+        height;
+        constructor(width,height) {
+            this.width = width;
+            this.height = height;
+        }
+        getWeight(){
+            return this.width;
+        }
+        setWeight(value){
+            this.width = value;
+        }
+        getHeight(){
+            return this.height;
+        }
+        setHeight(){
+            this.height = value;
+        }
+        getPerimeter(){
+            return 2*(this.height+this.width);
+        }
+        getArea(){
+            return this.height*this.width;
+        }
+    }
+
+    function Result(){
+        let width = +document.getElementById('weight').value;
+        let height = +document.getElementById('height').value;
+        let toaDoX = +document.getElementById('toaDoX').value;
+        let toaDoY = +document.getElementById('toaDoY').value;
+        let coLor =document.getElementById('changeColor').value;
+
+        let rectangle = new recTangle(width,height);
+        let area = rectangle.getArea();
+        let perimeter = rectangle.getPerimeter();
+        document.getElementById('area').innerHTML= area;
+        document.getElementById('perimeter').innerHTML=perimeter;
+
+        let canvas = document.getElementById('myCanvas');
+        let ctx = canvas.getContext('2d');
+        // ctx.beginPath();
+        // ctx.fillStyle= 'red';
+        ctx.strokeStyle = coLor;
+        // ctx.fillRect(200,200,width,height);
+        // ctx.stroke();
+        ctx.strokeRect(toaDoX,toaDoY,width,height)
+
+    }
+    function reset(){
+        document.getElementById('area').innerHTML = '';
+        document.getElementById('perimeter').innerHTML='';
+        let canvas = document.getElementById('myCanvas');
+        document.getElementById('width').value = 0;
+        document.getElementById('height').value = 0;
+        document.getElementById('toaDoY').value= 0;
+        document.getElementById('toaDoX').value= 0;
+        document.getElementById('changeColor').innerText='';
+
+
+
+        let ctx = canvas.getContext('2d');
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+    }
+
+
+
+
+</script>

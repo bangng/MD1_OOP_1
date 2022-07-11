@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>IPHONE</h1>
+<button onclick="onOffMobile(this.id)" id="onOff-Ip">ON</button>
+<button id="battery1">Battery</button>
+<button id="mes1" onclick="messIP(this.id)">SEND</button>
+<br>
+<textarea id="tex1" style="width: 300px;height: 250px"></textarea>
+
+<hr>
+<h1>NOKIA</h1>
+<button onclick="onOffMobile(this.id)" id="onOff-Nk">ON</button>
+<button id="battery2">Battery</button>
+<button id="mes2" onclick="messNK(this.id)">SEND</button>
+<button id="inboxNK" onclick="checkInBox(this.id)">INBOX</button>
+<br>
+<textarea id="tex2" style="width: 300px;height: 250px"></textarea>
+
+</body>
+</html>
+<script>
+    let status1 = true;
+    let status2 = true;
+    function onOffMobile(id){
+        let on = document.getElementById('onOff');
+        if (id=='onOff-Ip'){
+            status1=!status1
+            if (status1){
+                document.getElementById(id).innerHTML='ON'
+            }else {
+                document.getElementById(id).innerHTML='OFF'
+            }
+        }else {
+            status2=!status2
+            if (status2){
+                document.getElementById(id).innerHTML='ON'
+            }else {
+                document.getElementById(id).innerHTML='OFF'
+            }
+        }
+
+    }
+    class Mobile{
+        outBox;
+        inBox;
+        name;
+        battery;
+        tus;
+        constructor(name,battery) {
+            this.tus=tus;
+
+            this.name=name;
+            this.battery=battery;
+            this.outBox=[];
+            this.inBox=[];
+        }
+        getTus(){
+            return this.tus;
+        }
+        setName(tus){
+            this.tus = tus;
+        }
+        getName(){
+            return this.name
+        }
+        setName(name){
+            this.name = name;
+        }
+        getBattery(){
+            return this.battery;
+        }
+        setBattery(battery){
+            this.battery=battery;
+        }
+        getInBox(){
+            return this.inBox;
+        }
+        setInBox(inBox){
+            this.inBox=inBox;
+        }
+        getOutBox(){
+            return this.outBox;
+        }
+        setOutBox(outBox){
+            this.outBox=outBox;
+        }
+    }
+    let IPHONE =new Mobile('iphone',100)
+    let NOKIA = new Mobile('nokia',100)
+    document.getElementById('battery1').innerHTML=IPHONE.getBattery()+'%'
+    document.getElementById('battery2').innerHTML=NOKIA.getBattery()+'%'
+    let timeOut;
+    function downBattery(){
+        IPHONE.setBattery(IPHONE.getBattery()-1)
+        document.getElementById('battery1').innerHTML=IPHONE.getBattery()+'%'
+        NOKIA.setBattery(NOKIA.getBattery()-1)
+        document.getElementById('battery2').innerHTML=NOKIA.getBattery()+'%'
+        timeOut= setTimeout(downBattery,10000)
+    }
+    downBattery();
+    function messIP(id){
+        if (!IPHONE.getTus()){
+            return
+        }
+        if (id==='mes1'){
+            count++;
+            IPHONE.getOutBox().push(document.getElementById('tex1').value)
+            document.getElementById('tex2').value='you have new'+count+'message'
+            document.getElementById('tex1').value = ''
+        }
+        if (id==='mes2'){
+            NOKIA.getOutBox().push(document.getElementById('tex2').value)
+            document.getElementById('tex2').value=''
+        }
+    }
+    function checkInBox(id){
+        if (id==='inBoxNK'){
+            NOKIA.setInBox(IPHONE.getOutBox());
+            document.getElementById('tex2').value=NOKIA.getInBox().join()
+            count = 0;
+        }
+    }
+
+</script>
