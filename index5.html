@@ -100,7 +100,7 @@
         document.getElementById('battery1').innerHTML=IPHONE.getBattery()+'%'
         NOKIA.setBattery(NOKIA.getBattery()-1)
         document.getElementById('battery2').innerHTML=NOKIA.getBattery()+'%'
-        timeOut= setTimeout(downBattery,10000)
+        timeOut= setTimeout(downBattery,1000)
     }
     downBattery();
     function messIP(id){

@@ -7,10 +7,71 @@
 
 </head>
 
-
+<canvas id="myCanvas"  style="border:solid green" width="1000px" height="800px" ></canvas>
 <body>
 
 </body>
+<script>
+
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.fillStyle= 'black';
+        ctx.fillRect(0,0,200,100);
+        // ctx.closePath()
+        ctx.fillRect(400,0,200,100);
+        // ctx.closePath()
+        ctx.fillRect(800,0,200,100);
+        // ctx.closePath()
+        ctx.fillRect(400,400,200,100);
+        // ctx.closePath()
+        ctx.fillRect(0,700,200,100);
+        // ctx.closePath()
+
+        ctx.fillRect(400,700,200,100);
+        // ctx.closePath()
+
+        ctx.fillRect(800,700,200,100);
+        ctx.stroke();
+        ctx.closePath();
+
+        // ctx.stroke();
+        // let canvas = document.getElementById("myCanvas");
+        // let ctx = canvas.getContext("2d");
 
 
-</html>
+
+        ctx.beginPath();
+        // ctx.closePath();
+        ctx.fillStyle= 'green';
+
+        ctx.arc(100,150,50,0,2*Math.PI);
+        // ctx.closePath()
+        ctx.arc(500,150,50,0,2*Math.PI);
+        // ctx.closePath()
+        ctx.arc(900,150,50,0,2*Math.PI);
+        // ctx.closePath()
+        ctx.arc(500,350,50,0,2*Math.PI);
+        // ctx.closePath()
+        ctx.arc(100,650,50,0,2*Math.PI);
+        // ctx.closePath()
+        ctx.arc(500,650,50,0,2*Math.PI);
+        // ctx.closePath()
+        ctx.arc(900,650,50,0,2*Math.PI);
+        ctx.closePath();
+
+        ctx.stroke();
+
+
+
+
+
+
+
+
+
+
+
+</script>
+

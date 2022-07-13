@@ -8,3 +8,84 @@
 
 </body>
 </html>
+<script>
+    class Animal {
+        name;
+        weight;
+        speed;
+        say;
+        constructor(name,weight,speed,say) {
+            this.say=say;
+            this.name=name;
+            this.speed=speed;
+            this.weight=weight;
+        }
+
+        getName(){
+            return this.name;
+        }
+        setName(name){
+            this.name = name;
+        }
+        getWeight(){
+            return this.weight;
+        }
+        setWeight(weight){
+            this.weight = weight;
+        }
+        getSpeed(){
+            return this.speed;
+        }
+        setSpeed(speed){
+            this.speed = speed;
+        }
+        getSay(){
+            return this.say;
+        }
+        setSay(say){
+            this.say = say;
+        }
+    }
+    class Mouse extends Animal{
+        isDead;
+        constructor(name,weight,speed,say,isDead) {
+            super(name,weight,speed,speed);
+            this.isDead = isDead;
+        }
+        getIsDead(){
+            if(this.isDead){
+                console.log('mouse die')
+                // alert('Mouse die')
+            }else {
+                //
+                console.log('vẫn sống')
+            }
+            return this.isDead;
+        }
+        setIsDead(isDead){
+            this.isDead = isDead;
+        }
+    }
+    class Cat extends Animal{
+        constructor(name,weight,speed,say) {
+            super(name,weight,say,speed);
+        }
+        catchMouse(mouse){
+            if(super.getSpeed()>mouse.getSpeed()){
+                console.log('Đã bắt được')
+                mouse.setIsDead(true);
+            }else {
+                console.log('HAYAI')
+                mouse.setIsDead(false)
+            }
+        }
+        eatMouse(mouse){
+            if (mouse.getIsDead()){
+                super.setWeight(super.getWeight()+mouse.getWeight());
+                console.log('eatMouse========>',super.getWeight())
+            }else {
+
+            }
+        }
+    }
+</script>
